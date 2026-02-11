@@ -127,9 +127,9 @@ These are practical outcomes observed while testing (not universal truths).
    A common pattern is that RSS increases while the solve is active, then drops when the solve finishes. This is consistent with temporary Krylov workspace and solver objects.
 
 4. Back-of-the-envelope RAM comparison vs OpenFOAM (practical note)
-   On similar DOF scales of 1M and core counts (16 cores with 64 GB RAM setup), Firedrake monolithic (u,p) plus stabilization plus Krylov+MG can use maround 5GB RAM as against 2-3 GB for the OpenFOAM SIMPLE-style segregated solve.
+   On similar DOF scales of 1M and core counts (16 cores with 64 GB RAM setup), Firedrake monolithic (u,p) plus stabilization plus Krylov+MG can use around 6-7GB RAM as against 2.3 GB for the OpenFOAM SIMPLE-style segregated solve.
    This comparison is not 1:1 because OpenFOAM often solves U and p in separate stages (segregated), while this Firedrake implementation is monolithic and may allocate larger Krylov workspaces. Mesh type (tet vs poly/hex) and discretization also matter.
-   Takeaway: FEM taking ~2× the RAM of a segregated FV SIMPLE solve make FEM somewhat more practical and attractive; though it still appears to be a long shot from an FV based solver
+   Takeaway: FEM taking ~3× the RAM of a segregated FV SIMPLE solve make FEM somewhat more practical and attractive; though it still appears to be a long shot from an FV based solver
 ---
 
 ## COMMON PITFALLS / TROUBLESHOOTING
